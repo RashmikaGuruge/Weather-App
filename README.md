@@ -31,3 +31,40 @@ A modern, responsive web application that displays real-time weather information
 ```bash
 git clone https://github.com/your-username/simple-weather-reporter.git
 cd simple-weather-reporter
+
+### 2. Install dependencies
+
+```bash
+npm install
+
+### 3. Set up your API key
+
+```bash
+VITE_APP_WEATHER_API_KEY=your_api_key
+
+### 4. Run the development server
+
+```bash
+npm run dev
+
+### 5. Build for production
+
+```bash
+npm run build
+
+## Live Demo
+
+https://simple-weathernow.netlify.app/
+
+
+## 🧠 Design Choices & Notes
+
+- Chose Vite for fast development and hot reload support.
+- Tailwind CSS was used for efficient styling and responsive layouts.
+- WeatherAPI.com provides rich and easy-to-use data, including icons and UV index.
+- The app is componentized for better maintainability and reusability.
+
+
+## 📝 License
+
+- This project is open-source and available under the MIT License.
