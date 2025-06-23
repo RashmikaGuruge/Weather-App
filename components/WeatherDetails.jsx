@@ -107,7 +107,7 @@ const WeatherDetails = ({ location, apiKey }) => {
             <p className="text-2xl">{feelsLike}°</p>
             <p className="text-sm text-gray-300">Temperature: {current.temp_c}°</p>
           </div>
-          <p className="text-orange-400 text-sm mt-3">SLIGHTLY WARMER ↗</p>
+          <p className="text-orange-400 text-sm mt-4">SLIGHTLY WARMER ↗</p>
           <p className="text-xs text-gray-400">{feelsLikeDesc}</p>
         </div>
 
@@ -151,14 +151,14 @@ const WeatherDetails = ({ location, apiKey }) => {
         {/* Humidity Card */}
         <div className="bg-[#ffffff0d] bg-opacity-80 p-4 rounded-xl">
           <h3 className="text-sm mb-3">Humidity</h3>
-          <p className="text-2xl">{humidity}%</p>
+          <p className="text-2xl font-bold mt-2">{humidity}%</p>
           <div className="flex space-x-1 my-2">
             {[...Array(10)].map((_, i) => (
               <div key={i} className={`h-4 w-2 ${i < Math.round(humidity / 10) ? 'bg-blue-400' : 'bg-gray-600'}`}></div>
             ))}
           </div>
-          <p className="text-sm mt-2">Dew point: {current.dewpoint_c}°</p>
-          <p className="text-blue-400 text-sm mt-3">{humidityDesc} ↘</p>
+          <p className="text-sm mt-3">Dew point: {current.dewpoint_c}°</p>
+          <p className="text-blue-400 text-sm mt-4">{humidityDesc} ↘</p>
           <p className="text-xs">Decreasing with a low of {humidity}% at 1:06 PM.</p>
         </div>
       </div>
