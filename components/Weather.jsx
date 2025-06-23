@@ -72,13 +72,6 @@ const Weather = () => {
           {weather && !loading && !error && <WeatherCard weather={weather} />}
           {weather && !loading && !error && <WeatherDetails location={location} apiKey={API_KEY} />}
         </motion.div>
-        <div className="mt-12 text-center">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 max-w-2xl mx-auto">
-            <p className="text-yellow-800 text-sm">
-              <strong>Note:</strong> Ensure your WeatherAPI.com API key is set in the .env file to fetch real-time weather data.
-            </p>
-          </div>
-        </div>
       </main>
       <Footer />
     </div>

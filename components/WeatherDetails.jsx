@@ -59,11 +59,10 @@ const WeatherDetails = ({ location, apiKey }) => {
   const humidityTrend = forecast.hour[1].humidity < humidity ? 'DECREASING' : 'INCREASING';
 
   const minTemp = -10;
-const maxTemp = 35;
-const range = maxTemp - minTemp;
+  const maxTemp = 35;
+  const range = maxTemp - minTemp;
 
-// Normalize "feelsLike" to a percentage between 0 and 100
-const progressPercentage = Math.min(100, Math.max(0, ((feelsLike - minTemp) / range) * 100));
+  const progressPercentage = Math.min(100, Math.max(0, ((feelsLike - minTemp) / range) * 100));
 
 
   return (
@@ -75,9 +74,10 @@ const progressPercentage = Math.min(100, Math.max(0, ((feelsLike - minTemp) / ra
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4">
+
         {/* Temperature Card */}
-        <div className="bg-[#ffffff0d] bg-opacity-80 p-4 rounded-xl">
-          <h3 className="text-sm">Temperature</h3>
+        <div className="bg-[rgba(255,255,255,0.05)] bg-opacity-80 p-4 rounded-xl">
+          <h3 className="text-sm mb-3">Temperature</h3>
           <p className="text-3xl font-bold">{current.temp_c}°</p>
           <LineChart width={180} height={80} data={hourlyTemps}>
             <Line type="monotone" dataKey="temp" stroke="#ff4d4f" dot={false} />
@@ -91,41 +91,41 @@ const progressPercentage = Math.min(100, Math.max(0, ((feelsLike - minTemp) / ra
         </div>
 
         {/* Feels Like Card */}
-<div className="bg-[#ffffff0d] bg-opacity-80 p-4 rounded-xl">
-  <h3 className="text-sm mb-1">Feels like</h3>
+        <div className="bg-[#ffffff0d] bg-opacity-80 p-4 rounded-xl">
+          <h3 className="text-sm mb-3">Feels like</h3>
 
-  {/* Progress Bar */}
-  <div className="relative h-2 bg-gray-700 rounded-full mb-3">
-    <div
-      className="absolute top-0 left-0 h-2 bg-yellow-400 rounded-full transition-all duration-300"
-      style={{ width: `${progressPercentage}%` }}
-    ></div>
-  </div>
+          {/* Progress Bar */}
+          <div className="relative h-2 bg-gray-700 rounded-full mb-3">
+            <div
+              className="absolute top-0 left-0 h-2 bg-yellow-400 rounded-full transition-all duration-300"
+              style={{ width: `${progressPercentage}%` }}
+            ></div>
+          </div>
 
-  <p className="text-xs mb-2 text-gray-300">Dominant factor: {dominantFactor}</p>
-  <div className="flex items-center justify-between mb-1">
-    <p className="text-2xl">{feelsLike}°</p>
-    <p className="text-sm text-gray-300">Temperature: {current.temp_c}°</p>
-  </div>
-  <p className="text-orange-400 text-sm">SLIGHTLY WARMER ↗</p>
-  <p className="text-xs text-gray-400">{feelsLikeDesc}</p>
-</div>
+          <p className="text-xs mb-2 text-gray-300">Dominant factor: {dominantFactor}</p>
+          <div className="flex items-center justify-between mb-1">
+            <p className="text-2xl">{feelsLike}°</p>
+            <p className="text-sm text-gray-300">Temperature: {current.temp_c}°</p>
+          </div>
+          <p className="text-orange-400 text-sm mt-3">SLIGHTLY WARMER ↗</p>
+          <p className="text-xs text-gray-400">{feelsLikeDesc}</p>
+        </div>
 
 
         {/* Cloud Cover Card */}
         <div className="bg-[#ffffff0d] bg-opacity-80 p-4 rounded-xl">
-          <h3 className="text-sm">Cloud cover</h3>
+          <h3 className="text-sm mb-3">Cloud cover</h3>
           <div className="flex justify-center">
-            <div className="w-16 h-16 bg-gray-500 rounded-full flex items-center justify-center">{cloudDesc}</div>
+            <div className="w-16 h-16 bg-gray-500 rounded-full flex items-center justify-center"><p className='text-[10px]'>{cloudDesc}</p></div>
           </div>
           <p className="text-sm text-center">({cloudCover}%)</p>
-          <p className="text-blue-400 text-sm">{cloudTrend} ↘</p>
+          <p className="text-blue-400 text-sm mt-2">{cloudTrend} ↘</p>
           <p className="text-xs">Decreasing with cloudy sky at 1:06 PM.</p>
         </div>
 
         {/* Precipitation Card */}
         <div className="bg-[#ffffff0d] bg-opacity-80 p-4 rounded-xl">
-          <h3 className="text-sm">Precipitation</h3>
+          <h3 className="text-sm mb-3">Precipitation</h3>
           <div className="flex justify-center">
             <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center">Rain</div>
           </div>
@@ -137,7 +137,7 @@ const progressPercentage = Math.min(100, Math.max(0, ((feelsLike - minTemp) / ra
 
         {/* Wind Card */}
         <div className="bg-[#ffffff0d] bg-opacity-80 p-4 rounded-xl">
-          <h3 className="text-sm">Wind</h3>
+          <h3 className="text-sm mb-3">Wind</h3>
           <div className="flex justify-center">
             <div className="w-16 h-16 bg-gray-500 rounded-full flex items-center justify-center" style={{ transform: `rotate(${current.wind_degree}deg)` }}>→</div>
           </div>
@@ -150,15 +150,15 @@ const progressPercentage = Math.min(100, Math.max(0, ((feelsLike - minTemp) / ra
 
         {/* Humidity Card */}
         <div className="bg-[#ffffff0d] bg-opacity-80 p-4 rounded-xl">
-          <h3 className="text-sm">Humidity</h3>
+          <h3 className="text-sm mb-3">Humidity</h3>
           <p className="text-2xl">{humidity}%</p>
           <div className="flex space-x-1 my-2">
             {[...Array(10)].map((_, i) => (
               <div key={i} className={`h-4 w-2 ${i < Math.round(humidity / 10) ? 'bg-blue-400' : 'bg-gray-600'}`}></div>
             ))}
           </div>
-          <p className="text-sm">Dew point: {current.dewpoint_c}°</p>
-          <p className="text-blue-400 text-sm">{humidityDesc} ↘</p>
+          <p className="text-sm mt-2">Dew point: {current.dewpoint_c}°</p>
+          <p className="text-blue-400 text-sm mt-3">{humidityDesc} ↘</p>
           <p className="text-xs">Decreasing with a low of {humidity}% at 1:06 PM.</p>
         </div>
       </div>
