@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 const WeatherDetails = ({ location, apiKey }) => {
   const [weatherData, setWeatherData] = useState(null);
@@ -64,28 +64,29 @@ const WeatherDetails = ({ location, apiKey }) => {
 
   const progressPercentage = Math.min(100, Math.max(0, ((feelsLike - minTemp) / range) * 100));
 
-
   return (
-    <div className="bg-[#ffffff0d] bg-opacity-80 mt-12 text-white p-8 rounded-3xl shadow-2xl max-w-4xl mx-auto">
+    <div className="bg-[#ffffff0d] bg-opacity-80 mt-12 text-white p-4 sm:p-8 rounded-3xl shadow-2xl max-w-4xl mx-auto">
       <div className="flex justify-between items-center mb-4">
         <div>
           <h2 className="text-2xl font-bold">Weather details</h2>
           <p className="text-sm">{new Date().toLocaleTimeString()}</p>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 
         {/* Temperature Card */}
         <div className="bg-[rgba(255,255,255,0.05)] bg-opacity-80 p-4 rounded-xl">
           <h3 className="text-sm mb-3">Temperature</h3>
           <p className="text-3xl font-bold">{current.temp_c}°</p>
-          <LineChart width={180} height={80} data={hourlyTemps}>
-            <Line type="monotone" dataKey="temp" stroke="#ff4d4f" dot={false} />
-            <XAxis dataKey="time" hide />
-            <YAxis hide />
-            <CartesianGrid strokeOpacity={0.2} />
-            <Tooltip />
-          </LineChart>
+          <ResponsiveContainer width="100%" height={100}>
+            <LineChart data={hourlyTemps}>
+              <Line type="monotone" dataKey="temp" stroke="#ff4d4f" dot={false} />
+              <XAxis dataKey="time" hide />
+              <YAxis hide />
+              <CartesianGrid strokeOpacity={0.2} />
+              <Tooltip />
+            </LineChart>
+          </ResponsiveContainer>
           <p className="text-orange-400 text-sm">{tempTrend} ↗</p>
           <p className="text-xs">Rising with a peak of {peakTemp}° at {peakTime}.</p>
         </div>
@@ -93,24 +94,20 @@ const WeatherDetails = ({ location, apiKey }) => {
         {/* Feels Like Card */}
         <div className="bg-[#ffffff0d] bg-opacity-80 p-4 rounded-xl">
           <h3 className="text-sm mb-3">Feels like</h3>
-
-          {/* Progress Bar */}
           <div className="relative h-2 bg-gray-700 rounded-full mb-3">
             <div
               className="absolute top-0 left-0 h-2 bg-yellow-400 rounded-full transition-all duration-300"
               style={{ width: `${progressPercentage}%` }}
             ></div>
           </div>
-
           <p className="text-xs mb-2 text-gray-300">Dominant factor: {dominantFactor}</p>
           <div className="flex items-center justify-between mb-1">
             <p className="text-2xl">{feelsLike}°</p>
             <p className="text-sm text-gray-300">Temperature: {current.temp_c}°</p>
           </div>
-          <p className="text-orange-400 text-sm mt-4">SLIGHTLY WARMER ↗</p>
+          <p className="text-orange-400 text-sm mt-5">SLIGHTLY WARMER ↗</p>
           <p className="text-xs text-gray-400">{feelsLikeDesc}</p>
         </div>
-
 
         {/* Cloud Cover Card */}
         <div className="bg-[#ffffff0d] bg-opacity-80 p-4 rounded-xl">
@@ -119,7 +116,7 @@ const WeatherDetails = ({ location, apiKey }) => {
             <div className="w-16 h-16 bg-gray-500 rounded-full flex items-center justify-center"><p className='text-[10px]'>{cloudDesc}</p></div>
           </div>
           <p className="text-sm text-center">({cloudCover}%)</p>
-          <p className="text-blue-400 text-sm mt-2">{cloudTrend} ↘</p>
+          <p className="text-blue-400 text-sm mt-4">{cloudTrend} ↘</p>
           <p className="text-xs">Decreasing with cloudy sky at 1:06 PM.</p>
         </div>
 
