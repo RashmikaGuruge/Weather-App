@@ -29,7 +29,7 @@ A modern, responsive web application that displays real-time weather information
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/simple-weather-reporter.git
+git clone https://github.com/RashmikaGuruge/Weather-App.git
 cd simple-weather-reporter
 ```
 
@@ -60,6 +60,10 @@ npm run build
 ## Live Demo
 
 https://simple-weathernow.netlify.app/
+
+## 📸 Screenshot
+
+![App Screenshot](./public/wss1.png)
 
 
 ## 🧠 Design Choices & Notes
