@@ -10,7 +10,7 @@ const WeatherDetails = ({ location, apiKey }) => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=1`);
+        const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=1`);
         setWeatherData(response.data);
         setLoading(false);
       } catch (err) {
