@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Navbar from './Navbar';
 import SearchBar from './SearchBar';
 import WeatherSkeleton from './WeatherSkeleton';
 import ErrorMessage from './ErrorMessage';
 import WeatherCard from './WeatherCard';
 import WeatherDetails from './WeatherDetails';
-import Footer from './Footer';
 import { weatherThemes, conditionToTheme } from '../config/weatherConfig';
 
 const Weather = () => {
@@ -46,7 +44,6 @@ const Weather = () => {
 
   return (
     <div className={`min-h-screen ${theme.bgClass} ${theme.textClass}`}>
-      <Navbar />
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <motion.h2
@@ -73,7 +70,7 @@ const Weather = () => {
           {weather && !loading && !error && <WeatherDetails location={location} apiKey={API_KEY} />}
         </motion.div>
       </main>
-      <Footer />
+      
     </div>
   );
 }
